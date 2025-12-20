@@ -1,0 +1,25 @@
+name: Auto Key Generator
+
+on:
+  schedule:
+    - cron: "*/10 * * * *"
+  workflow_dispatch:
+
+jobs:
+  update-key:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Generate key
+        run: |
+          KEY="PHX-$(date +%s)"
+          echo $KEY > key.txt
+
+      - name: Commit
+        run: |
+          git config --global user.name "AutoKey"
+          git config --global user.email "autokey@bot.com"
+          git add key.txt
+          git commit -m "Auto update key"
+          git push

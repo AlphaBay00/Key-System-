@@ -1,5 +1,8 @@
 name: Auto Key Generator
 
+permissions:
+  contents: write
+
 on:
   schedule:
     - cron: "*/10 * * * *"
@@ -13,7 +16,7 @@ jobs:
 
       - name: Generate key
         run: |
-          KEY="PHX-$(date +%s)"
+          KEY="PHX-$(date +%s)-$RANDOM"
           echo $KEY > key.txt
 
       - name: Commit

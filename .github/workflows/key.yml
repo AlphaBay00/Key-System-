@@ -17,12 +17,12 @@ jobs:
       - name: Generate key
         run: |
           KEY="PHX-$(date +%s)-$RANDOM"
-          echo $KEY > key.txt
+          echo $KEY > key1.txt
 
       - name: Commit
         run: |
           git config --global user.name "AutoKey"
           git config --global user.email "autokey@bot.com"
-          git add key.txt
+          git add key1.txt
           git commit -m "Auto update key"
           git push
